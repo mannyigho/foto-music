@@ -2,7 +2,7 @@ let tracks = [];
 async function displayTrack() {
 
     // Empty elements before new data
-    $("#artist-track").empty();
+    $("#artist-tracks").empty();
     const trackName = $("#artist-name").val().trim();
     if (!trackName) {
         return;
@@ -24,7 +24,8 @@ async function displayTrack() {
         let data = JSON.parse(result);
         console.log(data);
         let trackItem = data.music[0].play_url.uri;
-        $('#artist-track').append(`<iframe src="${trackItem}"></iframe>`);
+        console.log('trackItem', trackItem)
+        $('#artist-tracks').append(`<iframe src="${trackItem}"></iframe>`);
 
     } catch (error) {
         console.error(error);
