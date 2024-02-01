@@ -7,36 +7,43 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Foto Music App</title>
 </head>
-<body>
-<div class="container">
-<section class="header">
 
-</section>
-<section class="body-section">
-<div class="row">
-<div id="body-section-left" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-<form class="">
-<input type="text" class="form-control" id="artist-name" placeholder="Enter artist name"><br>
-<button type="button" id="search-artist" class="btn btn-primary">Search Artist</button>
-<span id="error-message"></span><br/><br/>
-<div id="search-history">
-<button type="button" class="btn btn-secondary">Search history</button>
+<div class="container p-0">
+  <section class="header">
+    <header class="container-fluid text-center p-1 mb-3 text-white">
+      <h1>Foto Music</h1>
+    </header>
+  </section>
 </div>
-</form>
-</div>
-<div id="body-section-photo" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-<div id="artist-photo">Artist Photo</div>
-</div>
-<div id="body-section-right" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-<div id="artist-details">
-Artist Details
-</div>
-<div id="artist-tracks">
-Artist Tracks
-</div>
-</div>
-</div>
-</section>
+
+<body>
+  <div class="container p-0">
+		<section class="body-section">
+			<div class="row">
+				<div id="body-section-left" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<form class="">
+						<input type="text" class="form-control" id="artist-name" placeholder="Enter artist name"><br>
+						<button type="button" id="search-artist" class="btn btn-primary">Search Artist</button>
+						<span id="error-message"></span><br/><br/>
+						<div id="search-history">
+							<button type="button" class="btn btn-secondary" id="history">Search history</button>
+						</div>
+					</form>
+				</div>
+			<div id="body-section-photo" class="col-lg-5 col-md-4 col-sm-12 col-xs-12">
+				<div id="artist-photo">Artist Photo</div>
+			</div>
+			<div id="body-section-right" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+				<div id="artist-details">
+				Artist Details
+				</div>
+				<div id="artist-tracks">
+				Artist Tracks
+				</div>
+			</div>
+			</div>
+		</section>
+	</div>
 <footer class="footer-section">
 
 </footer>
