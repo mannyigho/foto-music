@@ -1,4 +1,5 @@
 let tracks = [];
+
 async function displayTrack() {
 
     // Empty elements before new data
@@ -12,7 +13,7 @@ async function displayTrack() {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': '68b20fda16msh22b9122aed21d27p11649fjsna0827e29cc48',
+            'X-RapidAPI-Key': '0c2286d76bmshec233881f1e6be2p1cfee8jsn1e295e4c1b73',
             'X-RapidAPI-Host': 'tokapi-mobile-version.p.rapidapi.com'
         }
     };
@@ -23,9 +24,19 @@ async function displayTrack() {
 
         let data = JSON.parse(result);
         console.log(data);
+
+        // Track Player
         let trackItem = data.music[0].play_url.uri;
         console.log('trackItem', trackItem)
         $('#artist-tracks').append(`<iframe src="${trackItem}"></iframe>`);
+
+        // Description Details
+        let songName = $(`<h3>${data.music[0].title}</h3>`);
+        let author = $(`<p>${data.music[0].author}></p>`);
+        let album = $(`<p>${data.music[0].album}</p>`);
+        $('#artist-details').append(songName)
+            .append(author)
+            .append(album)
 
     } catch (error) {
         console.error(error);
@@ -35,4 +46,10 @@ async function displayTrack() {
 console.log(displayTrack())
 
 $(document).on("click", "#search-artist", displayTrack);
-//displayButtons();
+displayButtons();
+
+// Add buttons for the history dinamically
+
+// Save buttons into local storage
+
+// Search for second API
