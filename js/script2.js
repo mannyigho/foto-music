@@ -36,7 +36,7 @@ try {
    $('#artist-tracks').append('<h3><br/>TRACKS:</h3>')
    for(i = 0; i < result.data.length; i++){
     $('#artist-tracks').append(`<h4>${result.data[i].title} [${i + 1}]</h4>`)
-   $('#artist-tracks').append(`<iframe src="${result.data[i].preview}"></iframe>`);
+   $('#artist-tracks').append(`<iframe src="${result.data[i].preview}" autoplay="0" autostart="false"></iframe>`);
    }
 
     console.log(result.data);
