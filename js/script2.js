@@ -29,11 +29,11 @@ try {
     $('#artist-photo').append(artistImage)
 
    //console.log(result.data[0].album.title);
-      var albumTitle = $(`<h2>ARTIST NAME:</h2><h4>${result.data[0].artist.name}</h4>`)
+      var albumTitle = $(`<h3>ARTIST NAME:</h3><h4>${result.data[0].artist.name}</h4>`)
    $('#artist-details').append(albumTitle)
 
    //console.log(result.data[0].preview);
-   $('#artist-tracks').append('<h2><br/>TRACKS:</h2>')
+   $('#artist-tracks').append('<h3><br/>TRACKS:</h3>')
    for(i = 0; i < result.data.length; i++){
     $('#artist-tracks').append(`<h4>${result.data[i].title} [${i + 1}]</h4>`)
    $('#artist-tracks').append(`<iframe src="${result.data[i].preview}"></iframe>`);
