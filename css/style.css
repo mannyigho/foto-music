@@ -1,19 +1,25 @@
-header {
-  background-color: rgb(112,173,71);
+body {
+  background-image: linear-gradient(to right, rgb(52,97,186), rgb(33,11,77));
 }
 
-#body-section-photo {
-  background-color: rgb(255,199,46);
+header {
+  background-color: rgb(13,17,23);
+  text-align: right;
+  text-shadow: 2px 2px blue;
+  border-radius: 15px;
+}
+
+#artist-photo {
   text-align: center;
+  color: white;
 }
 
 #artist-details {
-  background-color: grey;
   padding: 30px;
   margin-bottom: 5px;
+  color: white;
 }
 
 #artist-tracks {
-  background: darkgrey;
   padding: 30px;
 }
