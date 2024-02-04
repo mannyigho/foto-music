@@ -46,6 +46,8 @@ async function searchLyrics(songId) {
 async function onSearchClick() {
     $('#artist-photo').empty();
     $('.footer-section').empty();
+    $('#artist-details').empty();
+   
 
     const searchInput = $("#artist-name").val().trim();
     if (!searchInput) {
