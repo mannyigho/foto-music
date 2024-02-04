@@ -1,38 +1,78 @@
 let tracks = [];
-async function displayTrack() {
 
-    // Empty elements before new data
-    $("#artist-tracks").empty();
-    const trackName = $("#artist-name").val().trim();
-    if (!trackName) {
+const GENIUS_URL = 'https://genius-song-lyrics1.p.rapidapi.com';
+const GENIUS_OPTIONS = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': '68b20fda16msh22b9122aed21d27p11649fjsna0827e29cc48',
+        'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+    }
+};
+
+async function searchSong(searchQuery) {
+    const searchSongUrl = `${GENIUS_URL}/search/?q=${searchQuery}&per_page=10&page=1`;
+    
+    // const response = await fetch(searchSongUrl, GENIUS_OPTIONS);
+    // const result = await response.text();
+    // const data = JSON.parse(result);
+
+    // const { id, artist_names, title, song_art_image_url } = data.hits[0].result;
+    // console.log(data.hits[0].result);
+
+    const { id, artist_names, title, song_art_image_url } = searchData;
+    console.log(searchData);
+
+    const song = {
+        id: id,
+        artist: artist_names,
+        title: title,
+        photo: song_art_image_url, 
+    };
+    return song;
+}
+
+async function searchLyrics(songId) {
+    const searchLyricsUrl = `${GENIUS_URL}/song/lyrics/?id=${songId}`;
+    
+    // const response = await fetch(searchLyricsUrl, GENIUS_OPTIONS);
+    // const result = await response.text();
+    // const data = JSON.parse(result);
+    // const { body } = data.lyrics.lyrics;
+    
+    console.log('lyrics', lyrics);
+    return lyrics.html;
+}
+
+async function onSearchClick() {
+    $('#artist-photo').empty();
+    // $(.'footer-section').empty();
+
+    const searchInput = $("#artist-name").val().trim();
+    if (!searchInput) {
         return;
     }
 
-    const url = `https://tokapi-mobile-version.p.rapidapi.com/v1/search/music?keyword=${trackName}&count=10&filter_by=0`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '68b20fda16msh22b9122aed21d27p11649fjsna0827e29cc48',
-            'X-RapidAPI-Host': 'tokapi-mobile-version.p.rapidapi.com'
-        }
-    };
-    
-    try {
-        const response = await fetch(url, options);
-        const result = await response.text();
+    const { id, artist, title, photo } = await searchSong(searchInput);
+    const lyrics = await searchLyrics(id);
 
-        let data = JSON.parse(result);
-        console.log(data);
-        let trackItem = data.music[0].play_url.uri;
-        console.log('trackItem', trackItem)
-        $('#artist-tracks').append(`<iframe src="${trackItem}"></iframe>`);
+    // HTML Handling
+    const uri = `https://genius.com/songs/${id}/apple_music_player`
+    $('.footer-section').append(`<iframe allow="encrypted-media *;" src="${ uri }"></iframe>`);
+        
+    // Description Details
+    let titleElem = $(`<h3>${ title }</h3>`);
+    let authorElem = $(`<p>${ artist }</p>`);
+    // let albumElem = $(`<p>${ album }</p>`);
+    $('#artist-details').append(titleElem)
+        .append(authorElem)
+        //.append(albumElem)
 
-    } catch (error) {
-        console.error(error);
-    }
+    // Photo
+    let photoElem = $(`<img src="${photo}"></img>`);
+    $('#artist-photo').append(photoElem);
 
+    // Lyrics
+    $('#lyrics').append(lyrics);
 }
-console.log(displayTrack())
 
-$(document).on("click", "#search-artist", displayTrack);
-//displayButtons();
+$(document).on("click", "#search-artist", onSearchClick);
