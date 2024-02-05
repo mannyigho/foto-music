@@ -27,14 +27,14 @@ header {
   padding: 30px;
 }
 
-/* #lyrics {
-  display: flex;
-  background-color: black;
-  height: 300px;
-} */
-
 #lyrics a {
   color: white;
+  font-weight: 800;
+}
+
+#ai-image {
+  height: 200px;
+  width: 20px;
 }
 
 .footer-section {

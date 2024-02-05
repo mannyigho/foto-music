@@ -9,6 +9,16 @@ const GENIUS_OPTIONS = {
     }
 };
 
+const OPENAI_URL = 'https://open-ai21.p.rapidapi.com/texttoimage2';
+const OPENAI_OPTIONS = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/json',
+		'X-RapidAPI-Key': '0c2286d76bmshec233881f1e6be2p1cfee8jsn1e295e4c1b73',
+		'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
+	}
+};
+
 async function searchSong(searchQuery) {
     const searchSongUrl = `${GENIUS_URL}/search/?q=${searchQuery}&per_page=10&page=1`;
     
@@ -57,6 +67,8 @@ async function onSearchClick() {
     const { id, artist, title, photo } = await searchSong(searchInput);
     const lyrics = await searchLyrics(id);
 
+    const aiImage = await convertSongToImage(lyrics);
+
     // HTML Handling
     const uri = `https://genius.com/songs/${id}/apple_music_player`
     $('.footer-section').append(`<iframe allow="encrypted-media *;" src="${ uri }"></iframe>`);
@@ -64,10 +76,8 @@ async function onSearchClick() {
     // Description Details
     let titleElem = $(`<h3>${ title }</h3>`);
     let authorElem = $(`<p>${ artist }</p>`);
-    // let albumElem = $(`<p>${ album }</p>`);
     $('#artist-details').append(titleElem)
         .append(authorElem)
-        //.append(albumElem)
 
     // Photo
     let photoElem = $(`<img src="${photo}"></img>`);
@@ -75,6 +85,38 @@ async function onSearchClick() {
 
     // Lyrics
     $('#lyrics').append(lyrics);
+
+    // AI Image
+    let imageElem = $(`<img src="${aiImage}"></img>`);
+    $('#ai-image').append(imageElem);
+}
+
+// Open AI converts Song to one image
+async function convertSongToImage(lyrics) {
+    const songToImageUrl = `${OPENAI_URL}`;
+    const body = { text: 'cat' }
+    OPENAI_OPTIONS.body =  JSON.stringify(body);
+    console.log(OPENAI_OPTIONS)
+    try {
+        // const response = await fetch(songToImageUrl, OPENAI_OPTIONS);
+        // const result = await response.text();
+        // const openAiData = JSON.parse(result);
+        // console.log(openAiData)
+        const image = 'https://audiospace-1-r4970717.deta.app/matagimage?id=Qve3IXWKTYhwlrumM8ys1707129944.9716625'
+        console.log(image);
+        return image;
+    } catch (error) {
+	    console.error(error);
+    }
+    
 }
 
 $(document).on("click", "#search-artist", onSearchClick);
+
+
+// Display release date
+
+// Local storage
+
+// Second API
+
