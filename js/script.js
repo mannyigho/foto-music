@@ -119,3 +119,7 @@ $(document).on("click", "#search-artist", onSearchClick);
 // Sorting CSS
 
 // Creating bootstrap modal for generated image?
+
+// Fix bottom lyrics
+
+// Style title

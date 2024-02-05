@@ -2,13 +2,23 @@ body {
   background-image: linear-gradient(to right, rgb(52,97,186), rgb(33,11,77));
 }
 
-header {
+/* header {
   background-color: rgb(13,17,23);
   text-align: right;
   text-shadow: 2px 2px blue;
   border-radius: 15px;
-}
+} */
 
+.css1{
+  background-color:rgb(6, 6, 6);
+  font-size:50px;
+  font-family: georgia;
+  font-style:italic;
+  font-weight:bold;
+  color:rgb(255, 255, 255);
+  text-shadow: 2px 2px 8px #b39d9d;
+}
+  
 #artist-photo {
   display: flex;
   height: 400px;
