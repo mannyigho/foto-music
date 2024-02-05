@@ -29,7 +29,7 @@ async function searchSong(searchQuery) {
     // const { id, artist_names, title, song_art_image_url } = data.hits[0].result;
     // console.log(data.hits[0].result);
 
-    const { id, artist_names, title, song_art_image_url } = searchData;
+    const { id, artist_names, title, song_art_image_url, release_date_for_display } = searchData;
     console.log(searchData);
 
     const song = {
@@ -37,6 +37,7 @@ async function searchSong(searchQuery) {
         artist: artist_names,
         title: title,
         photo: song_art_image_url, 
+        date: release_date_for_display,
     };
     return song;
 }
@@ -64,7 +65,7 @@ async function onSearchClick() {
         return;
     }
 
-    const { id, artist, title, photo } = await searchSong(searchInput);
+    const { id, artist, title, photo, date } = await searchSong(searchInput);
     const lyrics = await searchLyrics(id);
 
     const aiImage = await convertSongToImage(lyrics);
@@ -76,8 +77,10 @@ async function onSearchClick() {
     // Description Details
     let titleElem = $(`<h3>${ title }</h3>`);
     let authorElem = $(`<p>${ artist }</p>`);
+    let dateElem = $(`<p>${ date }</p>`);
     $('#artist-details').append(titleElem)
         .append(authorElem)
+        .append(dateElem);
 
     // Photo
     let photoElem = $(`<img src="${photo}"></img>`);
