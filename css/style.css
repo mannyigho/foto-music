@@ -2,12 +2,12 @@ body {
   background-image: linear-gradient(to right, rgb(52,97,186), rgb(33,11,77));
 }
 
-/* header {
-  background-color: rgb(13,17,23);
+header {
+  background-color: rgb(28, 32, 37);
   text-align: right;
   text-shadow: 2px 2px blue;
-  border-radius: 15px;
-} */
+  border-radius: 0 0 10px 10px;
+}
 
 .css1{
   background-color:rgb(6, 6, 6);
@@ -28,7 +28,6 @@ body {
 }
 
 #artist-details {
-  padding: 30px;
   margin-bottom: 5px;
   color: white;
 }
