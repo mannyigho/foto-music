@@ -72,7 +72,10 @@ async function onSearchClick() {
     // Description Details
     let titleElem = $(`<h3>${ title }</h3>`);
     let authorElem = $(`<p>${ artist }</p>`);
-    let dateElem = $(`<p>${ date }</p>`);
+    let dateElem; 
+    if (date) {
+        dateElem = $(`<p>${ date }</p>`);
+    }
     
     $('#artist-details').append(titleElem)
         .append(authorElem)
@@ -87,7 +90,7 @@ async function onSearchClick() {
 
     // AI Image
     const aiImage = await convertSongToImage(lyrics);
-    let imageElem = $(`<img src="${aiImage}"></img>`);
+    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
     $('#ai-image').append(imageElem);
 }
 
@@ -96,7 +99,6 @@ async function convertSongToImage(lyrics) {
     const songToImageUrl = `${OPENAI_URL}`;
     const body = { text: lyrics }
     OPENAI_OPTIONS.body =  JSON.stringify(body);
-    console.log(OPENAI_OPTIONS.body)
     try {
         const response = await fetch(songToImageUrl, OPENAI_OPTIONS);
         const result = await response.text();
@@ -114,12 +116,9 @@ $(document).on("click", "#search-artist", onSearchClick);
 
 // Local storage
 
-// Fix no date
-
-// Sorting CSS
-
 // Creating bootstrap modal for generated image?
 
 // Fix bottom lyrics
 
-// Style title
+// name and description stuff
+
