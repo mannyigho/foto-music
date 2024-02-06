@@ -10,13 +10,13 @@
 </head>
 
 <body>
-  <div class="container p-0">
+  <div class="container-fluid">
     <section class="header row">
-      <header class="container-fluid text-white">
-        <marquee class="marquee" scrollamount="18">
+      <header class="container-fluid text-white logo">
+		<div class="marquee" scrollamount="18">
           <i class="fas fa-guitar pr-2"></i>
 		  Photo Music
-		</marquee>
+		</div>
       </header>
     </section>
   </div>
@@ -25,10 +25,10 @@
       <div class="row">
         <div id="body-section-left" class="col-xs-12 col-lg-3">
           <form class="text-center">
-            <input type="text" class="form-control bg-transparent" id="artist-name" placeholder="Enter artist name"><br>
+            <input type="text" class="form-control bg-transparent" id="artist-name" placeholder="Search song or artist"><br>
             <button type="button" id="search-artist" class="btn btn-light bg-transparent">
               <i class="fas fa-play pr-2"></i>
-              Search Artist
+              Search
             </button>
             <span id="error-message"></span><br /><br />
             <div id="search-history">
@@ -41,8 +41,11 @@
         </div>
         <div id="body-section-photo" class="col-xs-12 col-lg-5">
           	<div id="artist-photo"></div>
-			<div id="ai-image">This song in one image!</div>
-			<p id="wait"> Wait for it!</p>
+			<div id="ai-image"></div>
+			<div>
+				Do you want to see what AI thinks of this song?
+				<button class="btn btn-light bg-transparent">Check it here</button>
+			</div>
         </div>
         <div id="body-section-right" class="col-xs-12 col-lg-4 ml-0">
           <div id="artist-details">

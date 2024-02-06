@@ -20,20 +20,40 @@ body {
   }
 }
 
-.marquee{
+header {
   background-color:rgb(6, 6, 6);
-  font-size:50px;
+}
+
+.marquee {
+  
+  font-size: 50px;
   font-family: georgia;
   font-style: italic;
   font-weight: bold;
   color:rgb(255, 255, 255);
   text-shadow: 2px 2px 8px #b39d9d;
+  animation-duration: 1s;
+  animation-name: slidein;
 }
 
-@keyframes colorchange {
-  0%   { transform: scale(1.0) rotate(0deg); }
-  50%  { transform: rotate(340deg) translate(-300px,0px) }
-  100% { transform: scale(0.5) rotate(5deg) translate(1140px,-137px); }
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 200%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
 }
   
 #artist-photo {
