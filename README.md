@@ -1,5 +1,5 @@
-# foto-music
-“Foto Music”, is a hub media player experience at your fingertips! Play music while enjoying while reading along in lyrics section which is perfect for improptu karaoke session. Enjoy the cover art and learn more about the artist.
+# Photo-Music
+“Photo Music”, is a hub media player experience at your fingertips! Play music while enjoying while reading along in lyrics section which is perfect for improptu karaoke session. Enjoy cover art and learn more about your favourite artist.
 
 ## Features
 
@@ -17,7 +17,7 @@
 
 ## Getting Started
 
-Simply use the deployed project url: https://mannyigho.github.io/foto-music/ and search for a song to play.
+Simply use the deployed project url: https://mannyigho.github.io/photo-music/ and search for a song to play.
 
 ## Usage
 
@@ -44,7 +44,8 @@ MIT Lincense
 ## Acknowledgments
 
 The project uses the Genius API for song data.
+The project uses the Open AI API for related artist art.
 
 ## Project Links
 
-Git Hub containing project code URL: https://github.com/mannyigho Deployed project:https://mannyigho.github.io/foto-music/ ReadMe: https://github.com/mannyigho/foto-music/blob/main/README.md
+Git Hub containing project code URL: https://github.com/mannyigho Deployed project:https://mannyigho.github.io/photo-music/ ReadMe: https://github.com/mannyigho/photo-music/blob/main/README.md
