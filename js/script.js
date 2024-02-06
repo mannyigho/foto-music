@@ -1,4 +1,5 @@
 let tracks = [];
+let lyrics;
 
 const GENIUS_URL = 'https://genius-song-lyrics1.p.rapidapi.com';
 const GENIUS_OPTIONS = {
@@ -63,7 +64,7 @@ async function onSearchClick() {
     }
 
     const { id, artist, title, photo, date } = await searchSong(searchInput);
-    const lyrics = await searchLyrics(id);
+    lyrics = await searchLyrics(id);
 
     // HTML Handling
     const uri = `https://genius.com/songs/${id}/apple_music_player`
@@ -87,11 +88,6 @@ async function onSearchClick() {
 
     // Lyrics
     $('#lyrics').append(lyrics);
-
-    // AI Image
-    const aiImage = await convertSongToImage(lyrics);
-    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
-    $('#ai-image').append(imageElem);
 }
 
 // Open AI converts Song to one image
@@ -112,7 +108,18 @@ async function convertSongToImage(lyrics) {
     
 }
 
+// Generating modal
+async function onGenerateAIImageClick () {
+    // AI Image
+    $('#ai-question').empty();
+    const aiImage = await convertSongToImage(lyrics);
+    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
+    $('#ai-image').empty();
+    $('#ai-image').append(imageElem);
+}
+
 $(document).on("click", "#search-artist", onSearchClick);
+$(document).on("click", "#ai-generate", onGenerateAIImageClick);
 
 // Local storage
 
