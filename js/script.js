@@ -4,8 +4,8 @@ const GENIUS_URL = 'https://genius-song-lyrics1.p.rapidapi.com';
 const GENIUS_OPTIONS = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '68b20fda16msh22b9122aed21d27p11649fjsna0827e29cc48',
-        'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+        'X-RapidAPI-Key': '0c2286d76bmshec233881f1e6be2p1cfee8jsn1e295e4c1b73',
+		'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
     }
 };
 
@@ -70,11 +70,11 @@ async function onSearchClick() {
     $('.footer-section').append(`<iframe allow="encrypted-media *;" src="${ uri }"></iframe>`);
         
     // Description Details
-    let titleElem = $(`<h3>${ title }</h3>`);
-    let authorElem = $(`<p>${ artist }</p>`);
+    let titleElem = $(`<h3>Song title </h3> <p>${ title }</p>`);
+    let authorElem = $(`<p>Artist </p><p>${ artist }</p>`);
     let dateElem; 
     if (date) {
-        dateElem = $(`<p>${ date }</p>`);
+        dateElem = $(`<p>Album Released date</p><p>${ date }</p>`);
     }
     
     $('#artist-details').append(titleElem)
