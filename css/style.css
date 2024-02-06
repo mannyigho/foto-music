@@ -1,3 +1,4 @@
+
 /* main tags */
 body {
   z-index: 1;
@@ -16,7 +17,7 @@ hr {
   border-top: 1px dotted rgb(23,162,184)
 }
 
-/* At-rules */
+/* Body animation */
 @keyframes animate {
   0% {
     background-position: 0 50%;
@@ -41,17 +42,8 @@ hr {
   }
 }
 
-@-webkit-keyframes slide {
-    100% { left: 0; }
-}
-
-@keyframes slide {
-    100% { left: 0; }
-}
-
 /* classes */
 .marquee {
-  
   font-size: 50px;
   font-family: georgia;
   font-style: italic;
@@ -96,9 +88,9 @@ hr {
   padding: 30px;
 }
 
-#lyrics a {
+#lyrics, #lyrics a {
   color: white;
-  font-weight: 800;
+  font-weight: 200;
 }
 
 #ai-image {
@@ -106,7 +98,23 @@ hr {
   width: 20px;
 }
 
-#wait {
-  color: white;
-  font-weight: 800;
+.footer-section {
+  position: fixed;
+  height: 80px;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-section iframe {
+  width: 100%;
+  height: 90px;  
+}
+
+#search-history {
+  display: flex;
+  flex-direction: column;
+}
+
+#search-history button {
+  margin-bottom: 5px;
 }

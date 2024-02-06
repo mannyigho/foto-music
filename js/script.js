@@ -20,6 +20,7 @@ const OPENAI_OPTIONS = {
 	}
 };
 
+// Retrieves data from genius API
 async function searchSong(searchQuery) {
     const searchSongUrl = `${GENIUS_URL}/search/?q=${searchQuery}&per_page=10&page=1`;
     
@@ -40,6 +41,7 @@ async function searchSong(searchQuery) {
     return song;
 }
 
+// Retrieves lyrics
 async function searchLyrics(songId) {
     const searchLyricsUrl = `${GENIUS_URL}/song/lyrics/?id=${songId}`;
     
@@ -51,20 +53,38 @@ async function searchLyrics(songId) {
     return body.html;
 }
 
-async function onSearchClick() {
+function storeData(data) {
+    localStorage.setItem(data.title, JSON.stringify(data));
+}
+
+function returnsData(title) {
+    return JSON.parse(localStorage.getItem(title));
+}
+
+// Populates HTML with API data
+async function onSearchClick(event) {
+    event.preventDefault();
+
+    // Emptying elements 
     $('#artist-photo').empty();
     $('.footer-section').empty();
     $('#artist-details').empty();
+    $('#lyrics').empty();
     $('#ai-image').empty();
-   
-
+    
     const searchInput = $("#artist-name").val().trim();
     if (!searchInput) {
         return;
     }
 
     const { id, artist, title, photo, date } = await searchSong(searchInput);
-    lyrics = await searchLyrics(id);
+    const lyrics = await searchLyrics(id);
+    
+    // Populates the tracks array
+    tracks.push(title);
+    
+    // Populates the buttons
+    displayButtons();
 
     // HTML Handling
     const uri = `https://genius.com/songs/${id}/apple_music_player`
@@ -75,9 +95,8 @@ async function onSearchClick() {
     let authorElem = $(`<p>Artist </p><p>${ artist }</p>`);
     let dateElem; 
     if (date) {
-        dateElem = $(`<p>Album Released date</p><p>${ date }</p>`);
+        dateElem = $(`<p>Album Released date </p><p>${ date }</p>`);
     }
-    
     $('#artist-details').append(titleElem)
         .append(authorElem)
         .append(dateElem);
@@ -88,7 +107,38 @@ async function onSearchClick() {
 
     // Lyrics
     $('#lyrics').append(lyrics);
+
+
+    // AI Image
+    const aiImage = await convertSongToImage(lyrics);
+    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
+    $('#ai-image').append(imageElem);
+
+    let storeObject = {id, artist, title, photo, date, lyrics, aiImage};
+    storeData(storeObject);
 }
+
+// Displays history buttons
+function displayButtons() {
+    $("#search-history").empty();
+
+    for (var i = 0; i < tracks.length; i++) {    
+        var btn = $("<button>")
+            .append('<i class="fas fa-music pr-2"></i>')
+            .addClass("btn btn-secondary bg-transparent")
+            .attr("data-name", tracks[i])
+            .append(tracks[i])
+        $("#search-history").append(btn)
+        $(btn).on( "click", function(event) {
+            event.preventDefault();
+            console.log("clicked");
+            const title = $(this).attr("data-name");
+            let song = returnsData(title);
+            console.log(song);
+        });
+    }
+    
+};
 
 // Open AI converts Song to one image
 async function convertSongToImage(lyrics) {
@@ -122,10 +172,3 @@ $(document).on("click", "#search-artist", onSearchClick);
 $(document).on("click", "#ai-generate", onGenerateAIImageClick);
 
 // Local storage
-
-// Creating bootstrap modal for generated image?
-
-// Fix bottom lyrics
-
-// name and description stuff
-
