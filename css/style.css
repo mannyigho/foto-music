@@ -1,20 +1,51 @@
 body {
-  background-image: linear-gradient(to right, rgb(52,97,186), rgb(33,11,77));
+  z-index: 1;
+  background: linear-gradient(-45deg, red, rgb(23, 29, 143), rgb(4, 4, 14), rgb(25, 17, 132));
+  background-size: 400% 400%;
+  width: 100%;
+  height: 100vh;
+  animation: animate 40s ease infinite;
 }
 
-header {
-  background-color: rgb(28, 32, 37);
-  text-align: right;
-  text-shadow: 2px 2px blue;
-  border-radius: 0 0 10px 10px;
+
+@keyframes animate {
+  0% {
+    background-position: 0 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0 50%;
+  }
 }
 
+.marquee{
+  background-color:rgb(6, 6, 6);
+  font-size:50px;
+  font-family: georgia;
+  font-style: italic;
+  font-weight: bold;
+  color:rgb(255, 255, 255);
+  text-shadow: 2px 2px 8px #b39d9d;
+}
+
+@keyframes colorchange {
+  0%   { transform: scale(1.0) rotate(0deg); }
+  50%  { transform: rotate(340deg) translate(-300px,0px) }
+  100% { transform: scale(0.5) rotate(5deg) translate(1140px,-137px); }
+}
+  
 #artist-photo {
   display: flex;
   height: 400px;
   width: 400px;
-  text-align: center;
-  color: white;
+}
+
+.ai-image {
+  display: flex;
+  height: 400px;
+  width: 400px;
 }
 
 #artist-details {
@@ -26,14 +57,19 @@ header {
   padding: 30px;
 }
 
-/* #lyrics {
-  display: flex;
-  background-color: black;
-  height: 300px;
-} */
-
 #lyrics a {
   color: white;
+  font-weight: 800;
+}
+
+#ai-image {
+  height: 200px;
+  width: 20px;
+}
+
+#wait {
+  color: white;
+  font-weight: 800;
 }
 
 .footer-section {

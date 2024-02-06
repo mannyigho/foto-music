@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <title>Foto Music App</title>
+  <title>Photo Music App</title>
 </head>
 
 <body>
   <div class="container p-0">
     <section class="header row">
-      <header class="container-fluid p-3 text-white border">
-        <h1>
+      <header class="container-fluid text-white">
+        <marquee class="marquee" scrollamount="18">
           <i class="fas fa-guitar pr-2"></i>
-          Foto Music
-        </h1>
+		  Photo Music
+		</marquee>
       </header>
     </section>
   </div>
@@ -40,14 +40,14 @@
           </form>
         </div>
         <div id="body-section-photo" class="col-xs-12 col-lg-5">
-          <div id="artist-photo">Artist Photo</div>
+          	<div id="artist-photo"></div>
+			<div id="ai-image">This song in one image!</div>
+			<p id="wait"> Wait for it!</p>
         </div>
         <div id="body-section-right" class="col-xs-12 col-lg-4 ml-0">
           <div id="artist-details">
-            Artist Details
           </div>
           <div id="artist-tracks">
-            Artist Tracks
           </div>
           <div id="lyrics" class="container-fluid text-white">
           </div>
@@ -62,9 +62,6 @@
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://kit.fontawesome.com/e1ca2bc5ba.js" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
-  <!-- TEST DATA BECAUSE OF THE LIMIT OF THE APIs -->
-  <script type="text/javascript" src="./js/search_test.js"></script>
-  <script type="text/javascript" src="./js/lyrics_test.js"></script>
 </body>
 
 </html>
