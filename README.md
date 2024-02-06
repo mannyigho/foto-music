@@ -1,47 +1,50 @@
 # foto-music
-Introducing “Foto Music”, the ultimate multimedia experience at your fingertips! This innovative app seamlessly blends the world of music and visuals, creating a personalized symphony for your senses.
+“Foto Music”, is a hub media player experience at your fingertips! Play music while enjoying while reading along in lyrics section which is perfect for improptu karaoke session. Enjoy the cover art and learn more about the artist.
+
+## Features
+
+- Search for artists and songs by entering their names.
+- View artist details, including their name and a photo.
+- Listen to the top track of the artist.
+- Display song lyrics for the selected song.
 
 ## Table of Contents
 
-- [About](#about)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
-## About
-
-Provide a brief introduction to your project. Explain what it does, why it exists, and any key features or goals.
-
 ## Getting Started
 
-These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
-
-### Prerequisites
-
-List any software or tools that users need to install or have available before getting started.
-
-### Installation
-
-A step-by-step guide on how to install and set up the project locally.
+Simply use the deployed project url: https://mannyigho.github.io/foto-music/ and search for a song to play.
 
 ## Usage
 
-Provide examples and instructions on how to use your project. This section should be detailed enough to help users understand how to interact with your code.
+1. Enter an artist's name or a song title in the search bar.
+2. Click the "Search Artist" button.
+3. Artist details and a photo will be displayed on the right side of the page.
+4. The top track of the artist will start playing at the bottom of the page.
+5. Lyrics for the selected song will be displayed below the artist photo.
 
 ## Contributing
 
-Explain how others can contribute to your project. Include guidelines for pull requests, code style, and any other relevant information.
+Contributions are welcome! If you'd like to contribute to this project, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature: `git checkout -b feature-name`
+3. Make your changes and commit them: `git commit -m 'Add new feature'`
+4. Push to the branch: `git push origin feature-name`
+5. Create a pull request to merge your changes into the main branch.
 
 ## License
 
-This project is licensed under the [License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
+MIT Lincense
 
 ## Acknowledgments
 
-If you'd like to acknowledge or thank anyone who contributed to or inspired your project, you can do so here.
+The project uses the Genius API for song data.
 
+## Project Links
 
-
-
-
+Git Hub containing project code URL: https://github.com/mannyigho Deployed project:https://mannyigho.github.io/foto-music/ ReadMe: https://github.com/mannyigho/foto-music/blob/main/README.md
