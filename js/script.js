@@ -129,11 +129,11 @@ function displaySongDetails(song) {
     $('.footer-section').append(`<iframe allow="encrypted-media *;" src="${ uri }"></iframe>`);
         
     // Description Details
-    let titleElem = $(`<h3>Song title </h3><p>${ title }</p>`);
-    let authorElem = $(`<p>Artist </p><p>${ artist }</p>`);
+    let titleElem = $(`<h3>${ title }</h3>`);
+    let authorElem = $(`<h4>by ${ artist }</h4>`);
     let dateElem; 
     if (date) {
-        dateElem = $(`<p>Album Released date </p><p>${ date }</p>`);
+        dateElem = $(`<p>Release date: ${ date }</p>`);
     }
     $('#artist-details').append(titleElem)
         .append(authorElem)
@@ -145,6 +145,8 @@ function displaySongDetails(song) {
 
     // Lyrics
     $('#lyrics').append(lyrics);
+
+    $('#ai-question').removeClass('hide');
 };
 
 // Displays history buttons
