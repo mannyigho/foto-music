@@ -149,6 +149,11 @@ function displaySongDetails(song) {
     $('#ai-question').removeClass('hide');
 };
 
+function clearHistory() {
+    localStorage.clear();
+    $("#search-history").empty();
+};
+
 // Displays history buttons
 function displayButtons() {
     $("#search-history").empty();
@@ -175,4 +180,5 @@ function displayButtons() {
 };
 
 $(document).on("click", "#search-artist", onSearchClick);
+$("#clear-history").on("click", clearHistory);
 displayButtons();
