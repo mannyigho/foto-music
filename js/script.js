@@ -1,4 +1,3 @@
-let tracks = [];
 let lyrics;
 
 const GENIUS_URL = 'https://genius-song-lyrics1.p.rapidapi.com';
@@ -53,6 +52,23 @@ async function searchLyrics(songId) {
     return body.html;
 }
 
+// OpenAI converts Song to one image
+async function convertSongToImage(lyrics) {
+    const songToImageUrl = `${OPENAI_URL}`;
+    const body = { text: lyrics }
+    OPENAI_OPTIONS.body =  JSON.stringify(body);
+    try {
+        const response = await fetch(songToImageUrl, OPENAI_OPTIONS);
+        const result = await response.text();
+        const openAiData = JSON.parse(result);
+        console.log(openAiData.generated_image)
+        
+        return openAiData.generated_image;
+    } catch (error) {
+	    console.error(error);
+    }
+};
+
 function storeData(data) {
     localStorage.setItem(data.title, JSON.stringify(data));
 }
@@ -64,34 +80,45 @@ function returnsData(title) {
 // Populates HTML with API data
 async function onSearchClick(event) {
     event.preventDefault();
-
-    // Emptying elements 
-    $('#artist-photo').empty();
-    $('.footer-section').empty();
-    $('#artist-details').empty();
-    $('#lyrics').empty();
-    $('#ai-image').empty();
     
     const searchInput = $("#artist-name").val().trim();
     if (!searchInput) {
         return;
     }
 
+    // APIs
     const { id, artist, title, photo, date } = await searchSong(searchInput);
     const lyrics = await searchLyrics(id);
+    const aiImage = await convertSongToImage(lyrics);
     
-    // Populates the tracks array
-    tracks.push(title);
+    let storedSong = { id, artist, title, photo, date, lyrics, aiImage };
     
+    // HTML handling
+    displaySongDetails(storedSong);
+
+    // Local storage
+    storeData(storedSong);
+
     // Populates the buttons
     displayButtons();
+};
+
+function displaySongDetails(song) {
+    // Emptying elements 
+    $('#artist-photo').empty();
+    $('.footer-section').empty();
+    $('#artist-details').empty();
+    $('#lyrics').empty();
+    $('#ai-image').empty();
+
+    const { id, artist, title, photo, date, lyrics, aiImage } = song;
 
     // HTML Handling
     const uri = `https://genius.com/songs/${id}/apple_music_player`
     $('.footer-section').append(`<iframe allow="encrypted-media *;" src="${ uri }"></iframe>`);
         
     // Description Details
-    let titleElem = $(`<h3>Song title </h3> <p>${ title }</p>`);
+    let titleElem = $(`<h3>Song title </h3><p>${ title }</p>`);
     let authorElem = $(`<p>Artist </p><p>${ artist }</p>`);
     let dateElem; 
     if (date) {
@@ -110,65 +137,34 @@ async function onSearchClick(event) {
 
 
     // AI Image
-    const aiImage = await convertSongToImage(lyrics);
     let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
     $('#ai-image').append(imageElem);
-
-    let storeObject = {id, artist, title, photo, date, lyrics, aiImage};
-    storeData(storeObject);
-}
+};
 
 // Displays history buttons
 function displayButtons() {
     $("#search-history").empty();
 
-    for (var i = 0; i < tracks.length; i++) {    
+    const songs = Object.keys(localStorage);
+
+    for (var i = 0; i < songs.length; i++) {    
         var btn = $("<button>")
             .append('<i class="fas fa-music pr-2"></i>')
             .addClass("btn btn-secondary bg-transparent")
-            .attr("data-name", tracks[i])
-            .append(tracks[i])
+            .attr("data-name", songs[i])
+            .append(songs[i])
         $("#search-history").append(btn)
         $(btn).on( "click", function(event) {
             event.preventDefault();
             console.log("clicked");
             const title = $(this).attr("data-name");
             let song = returnsData(title);
+            displaySongDetails(song);
             console.log(song);
         });
     }
     
 };
 
-// Open AI converts Song to one image
-async function convertSongToImage(lyrics) {
-    const songToImageUrl = `${OPENAI_URL}`;
-    const body = { text: lyrics }
-    OPENAI_OPTIONS.body =  JSON.stringify(body);
-    try {
-        const response = await fetch(songToImageUrl, OPENAI_OPTIONS);
-        const result = await response.text();
-        const openAiData = JSON.parse(result);
-        console.log(openAiData.generated_image)
-        
-        return openAiData.generated_image;
-    } catch (error) {
-	    console.error(error);
-    }
-    
-}
-
-// Generating modal
-async function onGenerateAIImageClick () {
-    // AI Image
-    $('#ai-question').empty();
-    const aiImage = await convertSongToImage(lyrics);
-    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
-    $('#ai-image').empty();
-    $('#ai-image').append(imageElem);
-}
-
 $(document).on("click", "#search-artist", onSearchClick);
-$(document).on("click", "#ai-generate", onGenerateAIImageClick);
-
-// Local storage
+displayButtons();
