@@ -1,5 +1,5 @@
 # Photo-Music
-“Photo Music”, is a hub media player experience at your fingertips! Play music while reading along to song lyrics great for an impromptu karaoke session. Enjoy the cover art and learn more about your favourite artist with some a.i. generated imagery.
+“Photo Music”, is a hub media player experience at your fingertips! Play music while reading along to song lyrics, great for an impromptu karaoke session. Enjoy the cover art and learn more about your favourite artist with some a.i. generated imagery.
 
 ## Features
 
