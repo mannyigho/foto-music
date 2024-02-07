@@ -42,6 +42,9 @@ hr {
   }
 }
 
+.main-container {
+  margin-top: 20px;
+}
 /* classes */
 .marquee {
   font-size: 50px;
@@ -51,6 +54,10 @@ hr {
   text-shadow: 2px 2px 8px #b39d9d;
   animation-duration: 1s;
   animation-name: slidein;
+}
+
+#ai-question.hide {
+  display: none;
 }
 
 .ai-image {
