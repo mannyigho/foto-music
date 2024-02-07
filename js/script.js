@@ -19,7 +19,7 @@ const OPENAI_OPTIONS = {
 	}
 };
 
-// Retrieves data from genius API
+// Retrieves data from Genius API
 async function searchSong(searchQuery) {
     const searchSongUrl = `${GENIUS_URL}/search/?q=${searchQuery}&per_page=10&page=1`;
     
@@ -38,7 +38,7 @@ async function searchSong(searchQuery) {
         date: release_date_for_display,
     };
     return song;
-}
+};
 
 // Retrieves lyrics
 async function searchLyrics(songId) {
@@ -50,7 +50,7 @@ async function searchLyrics(songId) {
     const { body } = data.lyrics.lyrics;
     
     return body.html;
-}
+};
 
 // OpenAI converts Song to one image
 async function convertSongToImage(lyrics) {
@@ -89,19 +89,30 @@ async function onSearchClick(event) {
     // APIs
     const { id, artist, title, photo, date } = await searchSong(searchInput);
     const lyrics = await searchLyrics(id);
-    const aiImage = await convertSongToImage(lyrics);
     
-    let storedSong = { id, artist, title, photo, date, lyrics, aiImage };
+    let song = { id, artist, title, photo, date, lyrics };
     
     // HTML handling
-    displaySongDetails(storedSong);
+    displaySongDetails(song);
 
     // Local storage
-    storeData(storedSong);
+    storeData(song);
 
     // Populates the buttons
     displayButtons();
+    
+    const aiImage = await convertSongToImage(title);
+    const storedSong = returnsData(title);
+    storedSong.aiImage = aiImage;
+    storeData(storedSong);
+    displayAIImage(aiImage);
 };
+
+function displayAIImage(aiImage) {
+    // AI Image
+    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
+    $('#ai-image').append(imageElem);
+}
 
 function displaySongDetails(song) {
     // Emptying elements 
@@ -111,7 +122,7 @@ function displaySongDetails(song) {
     $('#lyrics').empty();
     $('#ai-image').empty();
 
-    const { id, artist, title, photo, date, lyrics, aiImage } = song;
+    const { id, artist, title, photo, date, lyrics } = song;
 
     // HTML Handling
     const uri = `https://genius.com/songs/${id}/apple_music_player`
@@ -134,11 +145,6 @@ function displaySongDetails(song) {
 
     // Lyrics
     $('#lyrics').append(lyrics);
-
-
-    // AI Image
-    let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
-    $('#ai-image').append(imageElem);
 };
 
 // Displays history buttons
@@ -153,14 +159,14 @@ function displayButtons() {
             .addClass("btn btn-secondary bg-transparent")
             .attr("data-name", songs[i])
             .append(songs[i])
-        $("#search-history").append(btn)
+        $("#search-history").append(btn);
         $(btn).on( "click", function(event) {
             event.preventDefault();
-            console.log("clicked");
             const title = $(this).attr("data-name");
             let song = returnsData(title);
             displaySongDetails(song);
             console.log(song);
+            displayAIImage(song.aiImage);
         });
     }
     
