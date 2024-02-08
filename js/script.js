@@ -71,11 +71,11 @@ async function convertSongToImage(lyrics) {
 
 function storeData(data) {
     localStorage.setItem(data.title, JSON.stringify(data));
-}
+};
 
 function returnsData(title) {
     return JSON.parse(localStorage.getItem(title));
-}
+};
 
 // Populates HTML with API data
 async function onSearchClick(event) {
@@ -108,11 +108,12 @@ async function onSearchClick(event) {
     displayAIImage(aiImage);
 };
 
+// AI Image
 function displayAIImage(aiImage) {
-    // AI Image
+
     let imageElem = $(`<img src="${aiImage}" class="ai-image"></img>`);
     $('#ai-image').append(imageElem);
-}
+};
 
 function displaySongDetails(song) {
     // Emptying elements 
