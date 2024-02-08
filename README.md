@@ -48,4 +48,8 @@ The project uses the Open AI API for related artist art.
 
 ## Project Links
 
-Git Hub containing project code URL: https://github.com/mannyigho Deployed project:https://mannyigho.github.io/photo-music/ ReadMe: https://github.com/mannyigho/photo-music/blob/main/README.md
+Git Hub containing project code URL: https://github.com/mannyigho Deployed project:https://mannyigho.github.io/photo-music/ ReadMe: https://github.com/mannyigho/photo-music/blob/main/README.md Project Screenshots: ![image](https://github.com/mannyigho/photo-music/assets/126507510/179b1cc1-d350-4a35-ab76-f382d30ce123) 
+![image](https://github.com/mannyigho/photo-music/assets/126507510/c417b2a0-96a2-441c-bb25-e551252b8cba)
+
+
+
